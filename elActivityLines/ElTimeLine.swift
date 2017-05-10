@@ -8,8 +8,8 @@
 
 import Foundation
 //
-//  ISTimeline.swift
-//  ISTimeline
+//  elTimeline.swift
+//  elTimeline
 //
 //  Created by Max Holzleitner on 07.05.16.
 //  Copyright © 2016 instant:solutions. All rights reserved.
@@ -17,7 +17,7 @@ import Foundation
 
 import UIKit
 
-open class ISTimeline: UIScrollView {
+open class elTimeline: UIScrollView {
     
     fileprivate static let gap:CGFloat = 15.0
     
@@ -55,7 +55,7 @@ open class ISTimeline: UIScrollView {
     open var titleColor:UIColor = .white
     open var descriptionColor:UIColor = .gray
     
-    open var points:[ISPoint] = [] {
+    open var points:[elPoint] = [] {
         didSet {
             self.layer.sublayers?.forEach({ (layer:CALayer) in
                 if layer.isKind(of: CAShapeLayer.self) {
@@ -136,7 +136,7 @@ open class ISTimeline: UIScrollView {
                 height += descriptionLabel!.intrinsicContentSize.height
             }
             
-            let point = CGPoint(x: self.bounds.origin.x + self.contentInset.left + lineWidth / 2, y: y + (titleHeight + ISTimeline.gap) / 2)
+            let point = CGPoint(x: self.bounds.origin.x + self.contentInset.left + lineWidth / 2, y: y + (titleHeight + elTimeline.gap) / 2)
             
             let maxTitleWidth = calcWidth()
             var titleWidth = titleLabel.intrinsicContentSize.width + 20
@@ -149,7 +149,7 @@ open class ISTimeline: UIScrollView {
                 x: point.x + pointDiameter + lineWidth / 2 + offset,
                 y: y + pointDiameter / 2,
                 width: titleWidth,
-                height: titleHeight + ISTimeline.gap)
+                height: titleHeight + elTimeline.gap)
             
             var descriptionRect:CGRect?
             if descriptionLabel != nil {
@@ -163,7 +163,7 @@ open class ISTimeline: UIScrollView {
             sections.append((point, bubbleRect, descriptionRect, titleLabel, descriptionLabel, points[i].pointColor.cgColor, points[i].lineColor.cgColor, points[i].fill))
             
             y += height
-            y += ISTimeline.gap * 2.2 // section gap
+            y += elTimeline.gap * 2.2 // section gap
         }
         y += pointDiameter / 2
         self.contentSize = CGSize(width: self.bounds.width - (self.contentInset.left + self.contentInset.right), height: y)
@@ -194,7 +194,7 @@ open class ISTimeline: UIScrollView {
     }
     
     fileprivate func calcWidth() -> CGFloat {
-        return self.bounds.width - (self.contentInset.left + self.contentInset.right) - pointDiameter - lineWidth - ISTimeline.gap * 1.5
+        return self.bounds.width - (self.contentInset.left + self.contentInset.right) - pointDiameter - lineWidth - elTimeline.gap * 1.5
     }
     
     fileprivate func drawLine(_ start:CGPoint, end:CGPoint, color:CGColor) {
